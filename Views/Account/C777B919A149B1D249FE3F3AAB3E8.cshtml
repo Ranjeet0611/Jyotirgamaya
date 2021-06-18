@@ -1,0 +1,234 @@
+﻿@model JYOTIRGAMAYA.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Account";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no,user-scalable=no">
+  <title>
+  
+  </title>
+  <!-- Favicon -->
+  <link href="~/images/download1.png" rel="icon" type="image/png">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link href="../assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+  @*<link href="../assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />*@
+  <!-- CSS Files -->
+  <link href="../assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt" rel="stylesheet"> 
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<SCRIPT language=JavaScript>
+
+
+
+var message = "Warning!";
+
+function rtclickcheck(keyp){ if (navigator.appName == "Netscape" && keyp.which == 3){ alert(message); return false; }
+
+if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) { alert(message); return false; } }
+
+document.onmousedown = rtclickcheck;
+
+</SCRIPT>
+<body class="bg-default">
+  <div class="main-content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+      <div class="container px-4">
+        <a class="navbar-brand" href="~/Dashboard/Index">
+          @*<img src="~/images/download1.png"/>*@
+            <h2 style="color:white;">JYOTIRGAMAYA</h2>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-collapse-main">
+          <!-- Collapse header -->
+          <div class="navbar-collapse-header d-md-none">
+            <div class="row">
+              <div class="col-6 collapse-brand">
+                <a href="../index.html">
+                  @*<img src="../assets/img/brand/blue.png">*@
+                     <h2 style="color:cornflowerblue;">JYOTIRGAMAYA</h2>
+                </a>
+              </div>
+              <div class="col-6 collapse-close">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Navbar items -->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="~/Dashboard/4AFA9223CF9E7FB47C64CAD5383D5">
+                <i class="ni ni-planet"></i>
+                <span class="nav-link-inner--text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="~/Account/38385DDEE93E5A6CDE6D75E8C8462">
+                <i class="ni ni-key-25"></i>
+                <span class="nav-link-inner--text">Login</span>
+              </a>
+            </li>
+          
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Header -->
+    <div class="header bg-gradient-primary py-7 py-lg-8">
+      <div class="container">
+        <div class="header-body text-center mb-7">
+          <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-6">
+              <h1 class="text-white">Welcome!</h1>
+             <p class="text-lead text-light"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+            
+            <div class="card-body px-lg-5 py-lg-5" style="background-color:white;border-radius:8px;">
+                <center><img src="~/images/download1.png" style="width:180px;height:150px;"/></center>
+                <br />
+                @if (TempData["Message"] == "Error")
+                {
+                    <center><h3 class="text-danger">Incorrect Security Name or Mobile Number.</h3></center>
+                }
+                @if (TempData["Message"] == "Error1")
+                {
+                    <center><h3 class="text-danger">Something went wrong we will look into it.</h3></center>
+                }
+                @if (TempData["Message"] == "Success")
+                {
+                    <center><h3 class="text-success">Password changes Successfully.<br /><a href="~/Account/38385DDEE93E5A6CDE6D75E8C8462">go back to login</a></h3></center>
+                }
+
+                <br />
+              <div class="text-center text-muted mb-4">
+                <h5 class="text-lead">Change Your Password</h5>
+              </div>
+                  @using (Html.BeginForm("RecoverPasswordForm", "Account"))
+                  {
+                      @Html.AntiForgeryToken()
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-pencil" aria-hidden="true" style="color:black;"></i></span>
+                    </div>
+                    @*<input class="form-control" data-val="true" data-val-required="Enter Your Email" id="Email" name="Email" placeholder="Email Address" required="required" type="email" value="" />*@
+                      @Html.TextBoxFor(model => model.SecurityName, new { @class = "form-control", @placeholder = "Security Name", required = "required" })
+                      @Html.ValidationMessageFor(model => model.SecurityName, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+                 <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true" style="color:black;"></i></span>
+                    </div>
+                    @*<input class="form-control" data-val="true" data-val-required="Enter Your Email" id="Email" name="Email" placeholder="Email Address" required="required" type="email" value="" />*@
+                      @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", @placeholder = "Mobile Number",@minlength="10",@maxlength="10", required = "required", })
+                      @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-unlock" aria-hidden="true" style="color:black;"></i></span>
+                    </div>
+                    @*<input class="form-control" placeholder="Password" type="password">*@
+                      @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "New Password",@minlength="8", @required = "required", })
+                      @Html.ValidationMessageFor(model => model.Password, "", new { @class = "form-control" })
+                     
+                  </div>
+                </div>
+                @*<div class="custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                  <label class="custom-control-label" for=" customCheckLogin">
+                    <span class="text-muted">Remember me</span>
+                  </label>
+                </div>*@
+                <div class="text-center">
+                  <input type="submit" class="btn btn-primary my-4" value="Change">
+                </div>
+                  }
+             
+            </div>
+          </div>
+                  
+          @*<div class="row mt-3">
+            <div class="col-6">
+              <a href="#" class="text-light"><small>Forgot password?</small></a>
+            </div>
+            <div class="col-6 text-right">
+              <a href="~/Account/UserRegister" class="text-light"><small>Create new account</small></a>
+            </div>
+          </div>*@
+                  
+        </div>
+      </div>
+    </div>
+    <footer class="py-5">
+      <div class="container">
+        <div class="row align-items-center justify-content-xl-between">
+          <div class="col-xl-6">
+            <div class="copyright text-center text-xl-left text-muted">
+              © 2019 <a href="#" class="font-weight-bold ml-1">Jyotirgamaya</a>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+              <li class="nav-item">
+                <a href="~/About/Index" class="nav-link">Jyotirgamaya Team</a>
+              </li>
+              <li class="nav-item">
+                <a href="~/About/Index" class="nav-link">About Us</a>
+              </li>
+              
+            
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!--   Core   -->
+  <script src="../assets/js/plugins/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!--   Optional JS   -->
+  <!--   Argon JS   -->
+  <script src="../assets/js/argon-dashboard.min.js?v=1.1.0"></script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+      window.TrackJS &&
+        TrackJS.install({
+            token: "ee6fab19c5a04ac1a32a645abde4613a",
+            application: "argon-dashboard-free"
+        });
+  </script>
+</body>
+
+</html>
+

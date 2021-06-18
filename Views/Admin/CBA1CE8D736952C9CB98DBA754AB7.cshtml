@@ -1,0 +1,202 @@
+﻿@model JYOTIRGAMAYA.Models.UserViewModel
+@{
+    ViewBag.Title = "RegisteredUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .form-control {
+        width:200px;
+        color:black;
+    }
+    ::placeholder {
+        color:black;
+    }
+</style>
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+     
+    </div>
+@if(@Model.getUserList.ToList().Count>0)
+ {              
+<div class="container-fluid mt--7">
+      <!-- Table -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-header border-0">
+                <center><h3 class="mb-0">Total Users - @Model.getUserList.ToList().Count</h3></center>
+              
+            </div>
+              <br />
+              @if (TempData["Message"] == "Success")
+              {
+                   <center><h3 class="text-success">User Deleted Successfully</h3></center>
+              }
+              @if (TempData["Message"] == "Error1")
+              {
+                   <center><h3 class="text-danger">Error while deleteing data from database.</h3></center>
+              }
+              @if (TempData["Message"] == "Error2")
+              {
+                   <center><h3 class="text-danger">Null Object Error.</h3></center>
+              }
+              @if (TempData["Message"] == "Error3")
+              {
+                   <center><h3 class="text-danger">Error while handling exception.</h3></center>
+              }
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                     <th scope="col">UserID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile Number</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Security Name</th>
+                    <th scope="col">IP_Address</th>
+                    <th scope="col">BrowserName</th>
+                    <th scope="col">BrowserType</th>
+                    <th scope="col">BrowserVersion</th>
+                    <th scope="col">BrowserPlatForm</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Pincode</th>
+                    <th scope="col">Confirm User ID</th>
+                    
+                  </tr>
+                </thead>
+                  @foreach(var item in Model.getUserList.ToList()){
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <a href="#" class="avatar rounded-circle mr-3">
+                          <img alt="Image placeholder" data-toggle="tooltip" src="~/images/user2.png" style="width:50px;height:50px;border-radius:100%;" data-original-title>
+                        </a>
+                        <div class="media-body">
+                          @*<span class="mb-0 text-sm">@item.FirstName</span>*@
+                           @Html.TextBoxFor(model =>model.UserID, new { @class = "form-control", @placeholder="UserID", @Value=@item.UserID})
+                        </div>
+                      </div>
+                    </th>
+                    <td>
+                       @Html.TextBoxFor(model=>model.FirstName, new { @class="form-control", @placeholder="FirstName", @Value=@item.FirstName})
+                    </td>
+                    <td>
+                      @*<span class="mb-0 text-sm">@item.Email</span>*@
+                        @Html.TextBoxFor(model=>model.LastName ,new { @class="form-control", @placeholder="LastName", @Value=@item.LastName})
+                    </td>
+                    <td>
+                     @*<span class="mb-0 text-sm">@item.MobileNumber</span>*@
+                        @Html.TextBoxFor(model=>model.Email , new{ @class="form-control",@placeholder="Email",@Value=@item.Email})
+                    </td>
+                    
+                     <td>
+                     @*<span class="mb-0 text-sm">@item.ComplaintType</span>*@
+                         @Html.TextBoxFor(model=>model.MobileNumber ,new {@class="form-control",@placeholder="MobileNumber", @Value=@item.MobileNumber})
+                    </td>
+                      <td>
+                     @*<span class="mb-0 text-sm">@item.ComplaintType</span>*@
+                         @Html.TextBoxFor(model=>model.Password ,new {@class="form-control",@placeholder="Password", @Value=@item.Password})
+                    </td>
+                       <td>
+                     @*<span class="mb-0 text-sm">@item.ComplaintType</span>*@
+                         @Html.TextBoxFor(model=>model.SecurityName ,new {@class="form-control",@placeholder="Security Name", @Value=@item.SecurityName})
+                    </td>
+                      <td>
+                     @*<span class="mb-0 text-sm">@item.ComplaintType</span>*@
+                         @Html.TextBoxFor(model=>model.Ip ,new {@class="form-control",@placeholder="IP_Address", @Value=@item.Ip})
+                    </td>
+                      <td>
+                     @*<span class="mb-0 text-sm">@item.ComplaintType</span>*@
+                         @Html.TextBoxFor(model=>model.BrowserName ,new {@class="form-control",@placeholder="Browser Name", @Value=@item.BrowserName})
+                    </td>
+                      <td>
+                     @*<span class="mb-0 text-sm">@item.ComplaintType</span>*@
+                         @Html.TextBoxFor(model=>model.BrowserType ,new {@class="form-control",@placeholder="Browser Type", @Value=@item.BrowserType})
+                    </td>
+                    <td>
+                     @*<span class="mb-0 text-sm">@item.ComplaintDescription</span>*@
+                        @Html.TextBoxFor(model=>model.BrowserVersion ,new {@class="form-control",@placeholder="Browser Version",@Value=@item.BrowserVersion})
+                    </td>
+                      <td>
+                     @*<span class="mb-0 text-sm">@item.ComplaintDescription</span>*@
+                        @Html.TextBoxFor(model=>model.BrowserPlatform ,new { @class="form-control", @placeholder="Browser Platform", @Value=@item.BrowserPlatform })
+                    </td>
+                      <td>
+                     @*<span class="mb-0 text-sm">@item.ComplaintType</span>*@
+                         @Html.TextBoxFor(model=>model.City ,new {@class="form-control",@placeholder="City", @Value=@item.City})
+                    </td>
+                      <td>
+                     @*<span class="mb-0 text-sm">@item.ComplaintType</span>*@
+                         @Html.TextBoxFor(model=>model.Pincode ,new {@class="form-control",@placeholder="Pincode", @Value=@item.Pincode})
+                    </td>
+                     @* <td>
+                          @Html.TextBoxFor(model => model.ComplaintID, new { @class="form-control", @placeholder ="Confirm Complaint ID" })
+                      </td>*@
+                      @using(Html.BeginForm("DeleteUser","Admin"))
+                      {
+                          @Html.AntiForgeryToken()
+                      <td>
+                        @Html.TextBoxFor(model=>model.UserID,new{ @class="form-control", @placeholder="Confirm UserId",@required="required"})
+                      </td>
+                   <td class="text-right">
+                      <div class="dropdown">
+                        <a class="btn btn-sm btn-icon-only text-dark" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="ni ni-bullet-list-67"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          <input type="submit" class="dropdown-item" value="Delete">
+                
+                          @*<a class="dropdown-item" href="#">Edit</a>*@
+                          @*<a class="dropdown-item" href="#">Something else here</a>*@
+                        </div>
+                      </div>
+                    </td>
+                      }
+                  </tr>
+                  
+                </tbody>
+                  }
+              </table>
+            </div>
+            <div class="card-footer py-4">
+              <nav aria-label="...">
+                <ul class="pagination justify-content-end mb-0">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">
+                      <i class="fas fa-angle-left"></i>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">
+                      <i class="fas fa-angle-right"></i>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+}  
+else
+{
+     <center>
+         <h1>No User Yet.<br /><a href="~/Account/UserRegister">Register</a></h1>
+         <img src="~/images/nouser.png" />
+     </center>
+} 
+
+
+
+
+

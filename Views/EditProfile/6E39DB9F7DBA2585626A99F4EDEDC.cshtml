@@ -1,0 +1,223 @@
+﻿@model JYOTIRGAMAYA.Models.UserViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+      <!-- Mask -->
+   
+      <span class="mask bg-gradient-default opacity-8"></span>
+      <!-- Header container -->
+      <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+          <div class="col-lg-7 col-md-10">
+            <h1 class="display-2 text-white">Hello @Html.DisplayFor(model=>model.FirstName)</h1>
+            <p class="text-white mt-0 mb-5">This is your profile page. You can Edit here.</p>
+            @*<a href="~/EditProfile/Index" class="btn btn-info">Edit profile</a>*@
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <!-- Page content -->
+  
+    <div class="container-fluid mt--7">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="#">
+                    <img src="~/images/user1.png" class="rounded-circle" style="height:190px;width:190px;">
+                  </a>
+                </div>
+                   
+              </div>
+            </div>
+            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+              <div class="d-flex justify-content-between">
+                @*<a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
+                <a href="#" class="btn btn-sm btn-default float-right">Message</a>*@
+              </div>
+            </div>
+            <div class="card-body pt-0 pt-md-4">
+              <div class="row">
+                <div class="col">
+                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                    @*<div>
+                      <span class="heading">22</span>
+                      <span class="description">Friends</span>
+                    </div>*@
+                    @*<div>
+                      <span class="heading">10</span>
+                      <span class="description">Photos</span>
+                    </div>*@
+                    @*<div>
+                      <span class="heading">89</span>
+                      <span class="description">Comments</span>
+                    </div>*@
+                  </div>
+                </div>
+              </div>
+                
+              <div class="text-center">
+                <h3>
+                  @Html.DisplayFor(model=>model.FirstName) @Html.DisplayFor(model=>model.LastName)<span class="font-weight-light"></span>
+                </h3>
+                <div class="h5 font-weight-300">
+                  <i class="ni location_pin mr-2"></i>@Html.DisplayFor(model=>model.City) , @Html.DisplayFor(model=>model.Pincode)
+                </div>
+                <div class="h5 mt-4">
+                  <i class="ni business_briefcase-24 mr-2"></i>Mobile Number - @Html.DisplayFor(model=>model.MobileNumber)
+                </div>
+                <div>
+                  <i class="ni education_hat mr-2"></i>@Html.DisplayFor(model=>model.Email)
+                </div>
+                <hr class="my-4" />
+                <p>JYOTIRGAMAYA</p>
+                
+              </div>
+                
+            </div>
+          </div>
+        </div>
+         
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">My account</h3>
+                </div>
+                <div class="col-8 text-right">
+                    
+                    
+                  @*<a href="~/EditProfile/Index" class="btn btn-sm btn-primary">Settings</a>*@
+                </div>
+                 
+              </div>
+                 @if (TempData["Message"] == "Success")
+                    {
+                        <center><p class="text-success">Saved Successfully.</p></center>
+                    }
+                    @if (TempData["Message"] == "Error1")
+                    {
+                        <center><p class="text-danger">Failed to edit your information</p></center>
+                    }
+                    @if (TempData["Message"] == "Error2")
+                    {
+                        <center><p class="text-danger">Something went wrong we will look into it .</p></center>
+                    }
+            </div>
+            <div class="card-body">
+                @using(Html.BeginForm("Edit","EditProfile",FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+              <form>
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Username</label>
+                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="@Model.FirstName">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Email address</label>
+                          @Html.TextBoxFor(model => model.Email, new { @class="form-control form-control-alternative",@Value=Model.Email,@placeholder="Email",@required="required"})
+                        @*<input type="email" id="Email" class="form-control form-control-alternative" placeholder="" value="@Model.Email">*@
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">First name</label>
+                        @Html.TextBoxFor(model => model.FirstName, new { @class="form-control form-control-alternative",@Value=Model.FirstName,@placeholder="First Name",@required="required"})
+                        @*<input type="text" id="FirstName" class="form-control form-control-alternative" placeholder="First name" value="@Model.FirstName">*@
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-last-name">Last name</label>
+                           @Html.TextBoxFor(model => model.LastName, new { @class="form-control form-control-alternative",@Value=Model.LastName,@placeholder="Last Name",@required="required"})
+                        @*<input type="text" id="LastName" class="form-control form-control-alternative" placeholder="Last name" value="@Model.LastName">*@
+                      </div>
+                    </div>
+                      <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-last-name">Password</label>
+                           @Html.TextBoxFor(model => model.Password, new { @class="form-control form-control-alternative",@Value=Model.Password,@placeholder="Password",@minlength="8",@required="required"})
+                        @*<input type="text" id="LastName" class="form-control form-control-alternative" placeholder="Last name" value="@Model.LastName">*@
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <!-- Address -->
+                <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-address">City</label>
+                           @Html.TextBoxFor(model => model.City, new { @class="form-control form-control-alternative",@Value=Model.City,@placeholder="City",@required="required"})
+                        @*<input id="City" class="form-control form-control-alternative" placeholder="City" value="@Model.City" type="text">*@
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country">Country</label>
+                        <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="India">
+                      </div>
+                    </div>
+                      <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country">Mobile Number</label>
+                           @Html.TextBoxFor(model => model.MobileNumber, new { @class="form-control form-control-alternative",@Value=Model.MobileNumber,@placeholder="Mobile Number",@minlength="10",@maxlength="10",@required="required"})
+                        @*<input type="text" id="MobileNumber" class="form-control form-control-alternative" placeholder="Mobile Number" value="@Model.MobileNumber">*@
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country">Pincode</label>
+                           @Html.TextBoxFor(model => model.Pincode, new { @class="form-control form-control-alternative",@Value=Model.Pincode,@placeholder="Pincode",@required="required"})
+                        @*<input type="number" id="Pincode" class="form-control form-control-alternative" value="@Model.Pincode" placeholder="Pincode">*@
+                      </div>
+                    </div>
+                      <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country">Security Name</label>
+                           @Html.TextBoxFor(model => model.SecurityName, new { @class="form-control form-control-alternative",@Value=Model.SecurityName,@placeholder="Security Name",@required="required"})
+                        @*<input type="number" id="Pincode" class="form-control form-control-alternative" value="@Model.Pincode" placeholder="Pincode">*@
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <!-- Description -->
+                @*<h6 class="heading-small text-muted mb-4">About me</h6>
+                <div class="pl-lg-4">
+                  <div class="form-group">
+                    <label>About Me</label>
+                    <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ..."></textarea>
+                  </div>
+                </div>*@
+                  <div class="text-center">
+                  <input type="submit" class="btn btn-primary mt-4" value="Save">
+                </div>
+              </form>
+                }
+            </div>
+          </div>
+        </div>
+          
+      </div>
+      <!-- Footer -->
+      

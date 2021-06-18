@@ -1,0 +1,285 @@
+﻿@model JYOTIRGAMAYA.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no,user-scalable=no">
+  <title>
+   
+  </title>
+     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Favicon -->
+  <link href="~/images/download1.png" rel="icon" type="image/png">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link href="../assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+  @*<link href="../assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />*@
+  <!-- CSS Files -->
+  <link href="../assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
+</head>
+<SCRIPT language=JavaScript>
+
+
+
+var message = "Warning!";
+
+function rtclickcheck(keyp){ if (navigator.appName == "Netscape" && keyp.which == 3){ alert(message); return false; }
+
+if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) { alert(message); return false; } }
+
+document.onmousedown = rtclickcheck;
+
+</SCRIPT>
+<body class="bg-default">
+  <div class="main-content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+      <div class="container px-4">
+        <a class="navbar-brand" href="~/Dashboard/4AFA9223CF9E7FB47C64CAD5383D5">
+          <h2 style="color:white;">JYOTIRGAMAYA</h2>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-collapse-main">
+          <!-- Collapse header -->
+          <div class="navbar-collapse-header d-md-none">
+            <div class="row">
+              <div class="col-6 collapse-brand">
+                <a href="../index.html">
+                  @*<img src="../assets/img/brand/blue.png">*@
+                    <h2 style="color:cornflowerblue;">JYOTIRGAMAYA</h2>
+                </a>
+              </div>
+              <div class="col-6 collapse-close">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Navbar items -->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="~/Dashboard/4AFA9223CF9E7FB47C64CAD5383D5">
+                <i class="ni ni-planet"></i>
+                <span class="nav-link-inner--text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="~/Account/38385DDEE93E5A6CDE6D75E8C8462">
+                <i class="ni ni-key-25"></i>
+                <span class="nav-link-inner--text">Login</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="~/UserProfile/1CE35A53FAE11C3BD5A7CE347ADEA">
+                <i class="ni ni-single-02"></i>
+                <span class="nav-link-inner--text">Profile</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Header -->
+    <div class="header bg-gradient-primary py-7 py-lg-8">
+      <div class="container">
+        <div class="header-body text-center mb-7">
+          <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-6">
+              <h1 class="text-white">Welcome!</h1>
+              <p class="text-lead text-light"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+      <!-- Table -->
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+          <div class="card bg-secondary shadow border-0">
+             
+           
+            <div class="card-body px-lg-5 py-lg-5" style="background-color:white;border-radius:8px;">
+                 <center><img src="~/images/download1.png" style="width:180px;height:150px;"/></center>
+                 <br />
+                @if (TempData["Meesage"] == "Error")
+                {
+                    <center><h3 class="text-danger">This account has already been added</h3></center>
+                }
+                @if (TempData["Meesage"] == "Error1")
+                {
+                    <center><h3 class="text-danger">Something Went wrong we will look into it</h3></center>
+                }
+                @if (TempData["Message"] == "Success")
+                {
+                    <center><h3 class="text-success">Your Account has been Created</h3></center>
+                }
+                
+              <div class="text-center text-muted mb-4">
+                <h5 class="text-lead">Sign up with credentials</h5>
+              </div>
+              @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+              {
+                  @Html.AntiForgeryToken()
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-user-circle-o" aria-hidden="true" style="color:black;"></i></span>
+                    </div>
+                    @*<input class="form-control" placeholder="Name" type="text">*@
+                      @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @placeholder = "Enter your First Name",@minlength="3",@required="required" })
+                      @Html.ValidationMessageFor(Model => Model.FirstName, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-user-circle-o" aria-hidden="true" style="color:black;"></i></span>
+                    </div>
+                    @*<input class="form-control" placeholder="Email" type="email">*@
+                      @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @placeholder = "Enter your Last Name",@minlength="3",@required="required" })
+                      @Html.ValidationMessageFor(Model => Model.LastName, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-unlock-alt" aria-hidden="true" style="color:black;"></i></span>
+                    </div>
+                    @*<input class="form-control" placeholder="Password" type="password">*@
+                      @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Enter your Password",@minlength="8",@required="required" })
+                      @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+                <div class="form-group" id="FormEmail">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-envelope-o" aria-hidden="true" style="color:black;"></i></span>
+                    </div>
+                    <input class="form-control" data-val="true" data-val-required="Enter your Email" id="Email" name="Email" placeholder="Enter your Email" required="required" type="email" value="" />
+                      @*@Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Enter your Email",required="required" })*@
+                      @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+                  <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true" style="color:black;"></i></span>
+                    </div>
+                    @*<input class="form-control" placeholder="Password" type="password">*@
+                      @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", @placeholder = "Enter your Mobile Number",@minlength="10",@maxlength="10",@required="required" })
+                      @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+                  <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-globe" aria-hidden="true" style="color:black;"></i></span>
+                    </div>
+                    @*<input class="form-control" placeholder="Password" type="password">*@
+                      @Html.TextBoxFor(model => model.City, new { @class = "form-control", @placeholder = "Enter your City",@required="required" })
+                      @Html.ValidationMessageFor(model=>model.City, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+                  <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-pencil" aria-hidden="true" style="color:black;"></i></span>
+                    </div>
+                    @*<input class="form-control" placeholder="Password" type="password">*@
+                      @Html.TextBoxFor(model => model.Pincode, new { @class = "form-control", @placeholder = "Enter your City Pincode",@required="required" })
+                      @Html.ValidationMessageFor(model=>model.Pincode, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+                  
+                 <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-pencil" aria-hidden="true" style="color:black;"></i></span>
+                    </div>
+                    @*<input class="form-control" placeholder="Password" type="password">*@
+                      @Html.TextBoxFor(model => model.SecurityName, new { @class = "form-control", @placeholder = "Enter Security Name",@required="required" })
+                      @Html.ValidationMessageFor(model=>model.SecurityName, "", new { @class = "text-danger" })
+                  </div>
+                     <br />
+                     <h5 class="text-lead">Security Name helps you to recover your password</h5>
+                </div>
+                 
+                @*<div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>*@
+                <div class="row my-4">
+                  <div class="col-12">
+                    <div class="custom-control custom-control-alternative custom-checkbox">
+                      <input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
+                      <label class="custom-control-label" for="customCheckRegister">
+                        <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <input type="submit" class="btn btn-primary mt-4" value="Create Account">
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="py-5">
+    <div class="container">
+      <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6">
+          <div class="copyright text-center text-xl-left text-muted">
+            &copy; 2019 <a href="#" class="font-weight-bold ml-1">Jyotirgamaya</a>
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+            <li class="nav-item">
+              <a href="~/About/Index" class="nav-link">Jyotirgamaya Team</a>
+            </li>
+            <li class="nav-item">
+              <a href="~/About/Index" class="nav-link">About Us</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </div>
+  <!--   Core   -->
+  <script src="../assets/js/plugins/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!--   Optional JS   -->
+  <!--   Argon JS   -->
+  <script src="../assets/js/argon-dashboard.min.js?v=1.1.0"></script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+      window.TrackJS &&
+        TrackJS.install({
+            token: "ee6fab19c5a04ac1a32a645abde4613a",
+            application: "argon-dashboard-free"
+        });
+  </script>
+</body>
+
+</html>
